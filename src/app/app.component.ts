@@ -13,35 +13,53 @@ export class AppComponent implements OnInit {
   public selectedIndex = 0;
   public appPages = [
     {
-      title: 'Inbox',
-      url: '/folder/Inbox',
-      icon: 'mail'
+      title: 'Acceuil',
+      url: 'acceuil',
+      icon: 'home',
+      color: 'primary',
+      info : 'Page d\'acceuil'
     },
     {
-      title: 'Outbox',
-      url: '/folder/Outbox',
-      icon: 'paper-plane'
+      title: 'Analyser ma santé',
+      url: 'dailycheck',
+      icon: 'heart-circle',
+      color:'danger',
+      info: ''
     },
     {
-      title: 'Favorites',
-      url: '/folder/Favorites',
-      icon: 'heart'
+      title: 'Médecins',
+      url: 'medecin',
+      icon: 'medkit',
+      color:'success',
+      info: 'Page ou vous retrouverez tous les alcohols que vous avez sélectionnez.'
     },
     {
-      title: 'Archived',
-      url: '/folder/Archived',
-      icon: 'archive'
+      title: 'Patients',
+      url: 'patient',
+      icon: 'people-circle',
+      color:'warning',
+      info: 'Page ou vous retrouverez tous les alcohols que vous avez sélectionnez.'
     },
     {
-      title: 'Trash',
-      url: '/folder/Trash',
-      icon: 'trash'
+      title: 'Login',
+      url: 'login',
+      icon: 'person',
+      color: 'secondary',
+      info: 'Retrouver toutes vos consommation préféré'
     },
     {
-      title: 'Spam',
-      url: '/folder/Spam',
-      icon: 'warning'
-    }
+      title: 'Historiques',
+      url: 'history',
+      icon: 'archive',
+      color:'tertiary'
+    },
+    {
+      title: 'Options',
+      url: '/folder/Options',
+      icon: 'settings',
+      color: 'medium'
+    },
+  
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
