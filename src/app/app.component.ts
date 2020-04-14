@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
       info : 'Page d\'acceuil'
     },
     {
-      title: 'Analyser ma santé',
+      title: 'Daily Check',
       url: 'dailycheck',
       icon: 'heart-circle',
       color:'danger',

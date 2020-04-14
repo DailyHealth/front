@@ -5,5 +5,32 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-grid class="ion-text-center">
+    <ion-col size-sm="12">
+      <ion-text>
+        <h1>Bonjour</h1>
+      </ion-text>
+    </ion-col>
+    <ion-col size-sm="12">
+      <ion-text>
+        <h2>
+          Comment vous sentez-vous aujurd'hui ?
+        </h2>
+      </ion-text>
+    </ion-col>
+    <ion-col size-sm="12">
+      <ion-text>
+        <h1>
+        <ion-icon size="large" color="danger" name="heart-outline"></ion-icon>
+        </h1>
+      </ion-text>
+    </ion-col>
+    <ion-col size-sm="12">
+      <ion-text>
+        <h2>
+          <ion-button size="large" shape="round" [routerLink]="['/dailycheck']">Prendre mes mesures</ion-button>
+        </h2>
+      </ion-text>
+    </ion-col>
+  </ion-grid>
 </ion-content>
