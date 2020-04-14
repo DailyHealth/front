@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>dailycheck</ion-title>
+    <ion-title>Check du jour</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -13,7 +13,7 @@
         </ion-card-header>
       
         <ion-card-content>
-          <ion-input placeholder="exemple : 37.5"></ion-input>
+          <ion-input type="number" placeholder="exemple : 37.5"></ion-input>
         </ion-card-content>
       </ion-card>
     <hr>
@@ -24,7 +24,7 @@
       </ion-card-header>
     
       <ion-card-content>
-        <ion-input placeholder="exemple : 37.5"></ion-input>
+        <ion-input type="number" placeholder="exemple : 37.5"></ion-input>
       </ion-card-content>
     </ion-card>
     <hr>
@@ -55,5 +55,21 @@
         </ion-list>
       </ion-card-content>
     </ion-card>
+    <hr>
+    <ion-card #commentaire class="ion-text-center">
+      <ion-card-header>
+        <ion-card-title><ion-icon color="primary" size="medium" name="pencil-outline"></ion-icon>&nbsp;Ressentis</ion-card-title>
+        <ion-card-subtitle>Vous pouvez ajoutez un commentaire ou une remarque sur votre état de santé.</ion-card-subtitle>
+      </ion-card-header>
+    
+      <ion-card-content>
+        <ion-item>
+          <ion-textarea placeholder="Pa exemple : Aujoud'hui de léger maux de ventre..."></ion-textarea>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+  <ion-button fill="outline" expand="large" shape="round">Enregistrer</ion-button>
+
   </ion-grid>
 </ion-content>
