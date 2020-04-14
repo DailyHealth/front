@@ -34,6 +34,14 @@ const routes: Routes = [
   {
     path: 'dailycheck',
     loadChildren: () => import('./pages/dailycheck/dailycheck.module').then( m => m.DailycheckPageModule)
+  },
+  {
+    path: 'medecin-list',
+    loadChildren: () => import('./pages/medecin-list/medecin-list.module').then( m => m.MedecinListPageModule)
+  },
+  {
+    path: 'patient-list',
+    loadChildren: () => import('./pages/patient-list/patient-list.module').then( m => m.PatientListPageModule)
   }
 ];
 

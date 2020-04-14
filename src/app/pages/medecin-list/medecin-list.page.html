@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Liste des médecins</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-content>
+    <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="setFilteredItems()"></ion-searchbar>
+    <!-- List of Input Items -->
+    <ion-item-group *ngFor="let medecin of medecins ; let i=index">
+      <ion-item-divider
+        *ngIf=" (medecins[i-1] != null &&  medecins[i].name.substr(0,1) != medecins[i-1].name.substr(0,1) ) || i == 0 ">
+        <ion-label>{{medecins[i].name.substr(0, 1) | uppercase}}</ion-label>
+      </ion-item-divider>
+      <ion-item>
+        <ion-avatar slot="start">
+          <img src="/front/src/assets/img/person.svg">
+        </ion-avatar>
+        <ion-label>
+          <h2>{{medecin.name}}}}</h2>
+          <h3>{{medecin.surname}}</h3>
+          <p>{{medecin.ahe}}</p>
+        </ion-label>
+      </ion-item>
+    </ion-item-group>
+  </ion-content>
+</ion-content>

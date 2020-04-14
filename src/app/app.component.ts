@@ -28,14 +28,14 @@ export class AppComponent implements OnInit {
     },
     {
       title: 'Médecins',
-      url: 'medecin',
+      url: 'medecin-list',
       icon: 'medkit',
       color:'success',
       info: 'Page ou vous retrouverez tous les alcohols que vous avez sélectionnez.'
     },
     {
       title: 'Patients',
-      url: 'patient',
+      url: 'patient-list',
       icon: 'people-circle',
       color:'warning',
       info: 'Page ou vous retrouverez tous les alcohols que vous avez sélectionnez.'

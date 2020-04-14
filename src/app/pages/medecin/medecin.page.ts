@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -10,38 +11,32 @@ import { environment } from 'src/environments/environment';
 })
 export class MedecinPage implements OnInit {
 
-  public medecins;
+  public medecin;
+  public medecinID;
+  public searchTerm : string = "";
 
-  constructor(private httpClient : HttpClient) { }
+  constructor(private httpClient : HttpClient,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
-  }
-
-  /**
-   * Fonction qui ajouter les données du formulaire d'ajout de la recette à la base
-   * @param dataForm Donnée du formulaire à ajouter
-   */
-  addRecetteToServer() {
-    let invocation = new XMLHttpRequest();
-    let headers = new HttpHeaders();
-    let url = environment.server + "index.php";
-    let dataForm = {"action":5};
-
-    
-    console.log(JSON.stringify(dataForm));   
-    headers = headers.set('Content-Type' , 'application/x-www-form-urlencoded; charset=UTF-8');
-    let options = { headers: headers };
-    
-    this.httpClient
-      .post(url, JSON.stringify(dataForm), options)
-      .subscribe(
-        (data) => {
-          console.log(data);
-        },
-        (error) => {
-          console.log( error);
-        }
-      );
+    this.medecinID = this.route.snapshot.paramMap.get('id'); 
+    this.getMedecinById(this.medecinID)
       
   }
+
+
+  getMedecinById(ID : number){
+    this.httpClient
+      .get<any[]>(environment.server + "medecin/" + ID) // changer la route
+      .subscribe(
+        (response) => {
+          this.medecin = response;  
+        },
+        (error) => {
+          console.log('Erreur ! : ' + error);
+        }
+      );
+  }
+
+
 }
