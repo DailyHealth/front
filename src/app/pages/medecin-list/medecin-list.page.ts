@@ -17,7 +17,9 @@ export class MedecinListPage implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-      this.getMedecinsFromServer();    
+      this.getMedecinsFromServer();
+     
+          
   }
 
 
@@ -51,10 +53,11 @@ export class MedecinListPage implements OnInit {
 
   getMedecinsFromServer() {
     this.httpClient
-      .get<any[]>(environment.server + "medecin")
+      .get<any[]>(environment.server + "api/GetListUser.php?role=M")
       .subscribe(
         (response) => {
-          this.medecins = response;           
+          this.medecins = response;    
+          console.log(this.medecins );       
         },
         (error) => {
           console.log('Erreur ! : ' + error);
@@ -69,7 +72,12 @@ export class MedecinListPage implements OnInit {
   }
 
   setFilteredItems() {
-    //this.medecins = this.alcoholService.filterItems(this.searchTerm)  
+    this.medecins = this.filterItems(this.searchTerm)  
   }
 
+  filterItems(searchTerm) {
+    return this.medecins.filter(item => {
+      return item.LastName.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+    });
+  }
 }

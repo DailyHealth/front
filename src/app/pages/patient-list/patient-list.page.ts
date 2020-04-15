@@ -15,8 +15,7 @@ export class PatientListPage implements OnInit {
   public patients;
   public searchTerm: string = "";
   
-  constructor(private route: ActivatedRoute,
-              private httpClient : HttpClient) { }
+  constructor(private httpClient : HttpClient) { }
 
   ngOnInit() {
     this.getPatientsFromServer();
@@ -28,18 +27,9 @@ export class PatientListPage implements OnInit {
     else return 1;
   }
 
-  setFilteredItems() {
-    if(this.patientID != "all"){
-     // this.patients = this.alcoholService.filterItems(this.searchTerm).filter(a => a.categoryId == this.categoryID).sort(this.tri);
-    }else{
-     // this.patients = this.alcoholService.filterItems(this.searchTerm);
-    }    
-  }
-
-
   getPatientsFromServer() {
     this.httpClient
-      .get<any[]>(environment.server + "patient")
+      .get<any[]>(environment.server + "api/GetListUser.php?role=P")
       .subscribe(
         (response) => {
           this.patients = response;           
@@ -48,6 +38,16 @@ export class PatientListPage implements OnInit {
           console.log('Erreur ! : ' + error);
         }
       );
+  }
+
+  setFilteredItems() {
+    this.patients = this.filterItems(this.searchTerm)  
+  }
+
+  filterItems(searchTerm) {
+    return this.patients.filter(item => {
+      return item.LastName.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+    });
   }
 
 }

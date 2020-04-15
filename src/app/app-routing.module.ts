@@ -20,11 +20,11 @@ const routes: Routes = [
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: 'patient',
+    path: 'patient/:id',
     loadChildren: () => import('./pages/patient/patient.module').then( m => m.PatientPageModule)
   },
   {
-    path: 'medecin',
+    path: 'medecin/:id',
     loadChildren: () => import('./pages/medecin/medecin.module').then( m => m.MedecinPageModule)
   },
   {
@@ -46,6 +46,10 @@ const routes: Routes = [
   {
     path: 'register',
     loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
+  },
+  {
+    path: 'zoom-call',
+    loadChildren: () => import('./pages/zoom-call/zoom-call.module').then( m => m.ZoomCallPageModule)
   }
 ];
 

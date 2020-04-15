@@ -38,17 +38,17 @@ export class AppComponent implements OnInit {
       info: 'Page ou vous retrouverez tous les alcohols que vous avez sélectionnez.'
     },
     {
-      title: 'testzoom',
-      url: 'medecin',
-      icon: 'medkit',
-      color:'success',
-      info: 'Page ou vous retrouverez tous les alcohols que vous avez sélectionnez.'
-    },
-    {
       title: 'Patients',
       url: 'patient-list',
       icon: 'people-circle',
       color:'warning',
+      info: 'Page ou vous retrouverez tous les alcohols que vous avez sélectionnez.'
+    },
+    {
+      title: 'Rejoindre un appelle',
+      url: 'zoom-call',
+      icon: 'videocam',
+      color:'tertiary',
       info: 'Page ou vous retrouverez tous les alcohols que vous avez sélectionnez.'
     },
     {
@@ -62,7 +62,7 @@ export class AppComponent implements OnInit {
       title: 'Historiques',
       url: 'history',
       icon: 'archive',
-      color:'tertiary'
+      color:'black'
     },
     {
       title: 'Options',

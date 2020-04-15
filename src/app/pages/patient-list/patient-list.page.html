@@ -1,26 +1,29 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Liste des patients</ion-title>
+    <ion-title>Liste des patients <ion-badge *ngIf="patients != null" color="secondary" mode="ios">{{patients.length}}
+      </ion-badge>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="setFilteredItems()"></ion-searchbar>
-  <!-- List of Input Items -->
-  <ion-item-group *ngFor="let patient of patients ; let i=index">
-    <ion-item-divider
-      *ngIf=" (patients[i-1] != null &&  patients[i].name.substr(0,1) != patients[i-1].name.substr(0,1) ) || i == 0 ">
-      <ion-label>{{patients[i].name.substr(0, 1) | uppercase}}</ion-label>
-    </ion-item-divider>
-    <ion-item>
-      <ion-avatar slot="start">
-        <img src="/front/src/assets/img/person.svg">
-      </ion-avatar>
-      <ion-label>
-        <h2>{{patient.name}}}}</h2>
-        <h3>{{patient.surname}}</h3>
-        <p>{{patient.ahe}}</p>
-      </ion-label>
-    </ion-item>
-  </ion-item-group>
+  <ion-content>
+    <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="setFilteredItems()"></ion-searchbar>
+    <!-- List of Input Items -->
+    <ion-item-group *ngFor="let patient of patients ; let i=index">
+      <ion-item-divider
+        *ngIf=" (patients[i-1] != null &&  patients[i].LastName.substr(0,1) != patients[i-1].LastName.substr(0,1) ) || i == 0 ">
+        <ion-label color="primary">{{patients[i].LastName.substr(0, 1) | uppercase}}</ion-label>
+      </ion-item-divider>
+      <ion-item [routerLink]="['/patient/',patient.idUser]">
+        <ion-avatar slot="start">
+          <img src="../../assets/img/person.svg">
+        </ion-avatar>
+        <ion-label>
+          <h2>{{patient.LastName}}</h2>
+          <h3>{{patient.FirstName}}</h3>
+        </ion-label>
+      </ion-item>
+    </ion-item-group>
+  </ion-content>
 </ion-content>
