@@ -50,6 +50,10 @@ const routes: Routes = [
   {
     path: 'zoom-call',
     loadChildren: () => import('./pages/zoom-call/zoom-call.module').then( m => m.ZoomCallPageModule)
+  },
+  {
+    path: 'stat',
+    loadChildren: () => import('./pages/stat/stat.module').then( m => m.StatPageModule)
   }
 ];
 

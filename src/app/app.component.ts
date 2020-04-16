@@ -10,18 +10,15 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent implements OnInit {
-  SDK_KEY:string = "Your SDK Key here";
-  SDK_SECRET:string = "Your SDK Secret here";
-
 
   public selectedIndex = 0;
   public appPages = [
     {
-      title: 'Acceuil',
+      title: 'Accueil',
       url: 'acceuil',
       icon: 'home',
       color: 'primary',
-      info : 'Page d\'acceuil'
+      info : 'Page d\'accueil'
     },
     {
       title: 'Daily Check',
@@ -35,21 +32,21 @@ export class AppComponent implements OnInit {
       url: 'medecin-list',
       icon: 'medkit',
       color:'success',
-      info: 'Page ou vous retrouverez tous les alcohols que vous avez sélectionnez.'
+      info: ''
     },
     {
       title: 'Patients',
       url: 'patient-list',
       icon: 'people-circle',
       color:'warning',
-      info: 'Page ou vous retrouverez tous les alcohols que vous avez sélectionnez.'
+      info: ''
     },
     {
-      title: 'Rejoindre un appelle',
+      title: 'Rejoindre un appel',
       url: 'zoom-call',
       icon: 'videocam',
       color:'tertiary',
-      info: 'Page ou vous retrouverez tous les alcohols que vous avez sélectionnez.'
+      info: ''
     },
     {
       title: 'Login',
@@ -68,6 +65,12 @@ export class AppComponent implements OnInit {
       title: 'Options',
       url: '/folder/Options',
       icon: 'settings',
+      color: 'medium'
+    },
+    {
+      title: 'Satistique',
+      url: 'stat',
+      icon: 'bar-chart',
       color: 'medium'
     },
   
