@@ -28,9 +28,9 @@
     "@ionic-native/status-bar": "^5.0.0",
     "@ionic-native/zoom": "^5.23.0",
     "@ionic/angular": "^5.0.0",
+    "@ionic/storage": "^2.2.0",
     "cordova-android": "^8.1.0",
     "cordova-ios": "^5.1.1",
-    "cordova.plugin.zoom": "^4.4.5513-0.712",
     "core-js": "^2.5.4",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",
@@ -69,7 +69,6 @@
   "description": "An Ionic project",
   "cordova": {
     "plugins": {
-      "cordova.plugin.zoom": {},
       "cordova-plugin-whitelist": {},
       "cordova-plugin-statusbar": {},
       "cordova-plugin-device": {},

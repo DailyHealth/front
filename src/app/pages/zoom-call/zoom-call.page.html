@@ -7,38 +7,52 @@
 <ion-content padding>
   <ion-card>
     <ion-card-header color="warning">
-      Ce que les utilisateurs non connecté peuvent faire:
+      <ion-text>Ce que vous pouvez faire : </ion-text>
     </ion-card-header>
     <ion-card-content>
       <ul>
-        <li>Joindre l'appel</li>
-        <li>Joindre l'appel avec ZAK</li>
+        <li>Créer une réunion zoom</li>
+        <li>Rejoindre une réunion zoom</li>
       </ul>
     </ion-card-content>
   </ion-card>
   <ion-card>
-    <form onsubmit="postUrlZoom(event)">
     <ion-card-header color="primary">
-      Insérer le lien ( url ) de l'appelle zoom
+      Création d'une réunion zoom (vous devez posséder un compte zoom)
     </ion-card-header>
     <ion-card-content>
       <ion-item>
-        <ion-label position="stacked">Lien&nbsp;<ion-text color="danger">*</ion-text></ion-label>
-        <ion-input required type="text" oninput="handleLastNameValue(event)"></ion-input>
+        <a target="_blank" [href]="url">Je n'ai pas de compte zoom.</a>
+        <ion-button type="submit" expand="block" fill="outline" shape="round">
+          Créer
+        </ion-button>
       </ion-item>
-      <ion-button type="submit" expand="block" fill="outline" shape="round">
-       Envoyer
-      </ion-button>
     </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <form onsubmit="postUrlZoom(event)">
+      <ion-card-header color="secondary">
+        Insérer le lien ( url ) de l'appelle zoom
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="stacked">Lien&nbsp;<ion-text color="danger">*</ion-text>
+          </ion-label>
+          <ion-input required type="text" oninput="handleLastNameValue(event)"></ion-input>
+        </ion-item>
+        <ion-button type="submit" expand="block" fill="outline" shape="round">
+          Envoyer
+        </ion-button>
+      </ion-card-content>
     </form>
   </ion-card>
   <ion-card>
-    <ion-card-header color="primary">
-     Cliquez sur le lien pour rejoindre la consultation
+    <ion-card-header color="success">
+      Cliquez sur le lien pour rejoindre la consultation
     </ion-card-header>
-    <ion-card-content >
+    <ion-card-content>
       <ion-item>
-        <ion-text *ngIf="url != null" blank><a [href]="url">{{url}}</a></ion-text>
+        <ion-text *ngIf="url != null">Lien :&nbsp;<a target="_blank" [href]="url">{{url}}</a></ion-text>
       </ion-item>
     </ion-card-content>
   </ion-card>

@@ -11,9 +11,7 @@ export class ZoomCallPage implements OnInit {
 
   public url : string = "";
 
-  constructor(private toastCtrl: ToastController,
-    private zoomService: Zoom,
-    private platform: Platform) { }
+  constructor() { }
 
   ngOnInit() {
     this.getUrl();

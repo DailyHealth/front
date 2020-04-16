@@ -10,6 +10,11 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { Zoom } from '@ionic-native/zoom/ngx';
+import { AuthModule } from './auth/auth.module';
+import { FormsModule } from '@angular/forms';
+
+
+import { IonicStorageModule } from '@ionic/storage'
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,8 +22,11 @@ import { Zoom } from '@ionic-native/zoom/ngx';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    AuthModule,
     HttpClientModule,
+    FormsModule,
     IonicModule.forRoot(),
+    IonicStorageModule.forRoot()
   ],
   providers: [
     StatusBar,

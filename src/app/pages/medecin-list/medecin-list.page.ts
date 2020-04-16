@@ -28,7 +28,6 @@ export class MedecinListPage implements OnInit {
    * @param dataForm Donnée du formulaire à ajouter
    */
   addRecetteToServer() {
-    let invocation = new XMLHttpRequest();
     let headers = new HttpHeaders();
     let url = environment.server + "index.php";
     let dataForm = {"action":5};
@@ -60,7 +59,7 @@ export class MedecinListPage implements OnInit {
           console.log(this.medecins );       
         },
         (error) => {
-          console.log('Erreur ! : ' + error);
+          console.log(error);
         }
       );
   }
@@ -72,12 +71,17 @@ export class MedecinListPage implements OnInit {
   }
 
   setFilteredItems() {
-    this.medecins = this.filterItems(this.searchTerm)  
-  }
-
-  filterItems(searchTerm) {
-    return this.medecins.filter(item => {
-      return item.LastName.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
-    });
+    this.httpClient
+      .get<any[]>(environment.server + "api/GetListUser.php?role=M")
+      .subscribe(
+        (response) => {
+          this.medecins = response.filter(item => {
+            return item.LastName.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1;
+          });
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 }

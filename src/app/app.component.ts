@@ -53,19 +53,13 @@ export class AppComponent implements OnInit {
       url: 'login',
       icon: 'person',
       color: 'secondary',
-      info: 'Retrouver toutes vos consommation préféré'
+      info: ''
     },
     {
       title: 'Historiques',
       url: 'history',
       icon: 'archive',
       color:'black'
-    },
-    {
-      title: 'Options',
-      url: '/folder/Options',
-      icon: 'settings',
-      color: 'medium'
     },
     {
       title: 'Satistique',
@@ -75,7 +69,7 @@ export class AppComponent implements OnInit {
     },
   
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
+  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Reminders'];
 
   constructor(
     private platform: Platform,

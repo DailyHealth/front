@@ -5,11 +5,11 @@
 </ion-header>
 
 <ion-content>
-  <form onsubmit="login(event)" class="ion-padding-end ion-padding-start ion-margin-top">
+  <form #form="ngForm" (ngSubmit)="register(form)" class="ion-padding-end ion-padding-start ion-margin-top">
     <ion-grid class="ion-text-center">
       <ion-card>
         <ion-card-header>
-          <ion-card-title>Connexion</ion-card-title>
+          <ion-card-title>Création de compte</ion-card-title>
           <ion-card-subtitle>Entrez les informations</ion-card-subtitle>
         </ion-card-header>
         <ion-card-content>
@@ -30,10 +30,64 @@
             </div>
             <div>
               <ion-item>
-                <ion-label position="floating">Vérification du mot de passe&nbsp;<ion-text color="danger">*</ion-text>
+                <ion-label position="floating">Nom&nbsp;<ion-text color="danger">*</ion-text>
                 </ion-label>
-                <ion-input required clearInput type="password"></ion-input>
+                <ion-input required clearInput type="text"></ion-input>
               </ion-item>
+            </div>
+            <div>
+              <ion-item>
+                <ion-label position="floating">Prénom&nbsp;<ion-text color="danger">*</ion-text>
+                </ion-label>
+                <ion-input required clearInput type="text"></ion-input>
+              </ion-item>
+            </div>
+            <div>
+              <ion-item>
+                <ion-label>Etes vous un patient ou un médecin ?&nbsp;&nbsp;<ion-text color="danger">*</ion-text></ion-label>
+                <ion-select required #role name="role" (ionChange)="onChangeRole(role.value)">
+                  <ion-select-option value="P">Patient</ion-select-option>
+                  <ion-select-option value="M">Médecin</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </div>
+            <div id="patient" class="ion-margin-start" style="display: none;">
+              <div>
+                <ion-item>
+                  <ion-label position="floating">Age
+                  </ion-label>
+                  <ion-input clearInput type="number"></ion-input>
+                </ion-item>
+              </div>
+              <div>
+                <ion-item>
+                  <ion-label position="floating">Poids
+                  </ion-label>
+                  <ion-input clearInput type="number"></ion-input>
+                </ion-item>
+              </div>
+              <div>
+                <ion-item>
+                  <ion-label position="floating">Taille
+                  </ion-label>
+                  <ion-input clearInput type="number"></ion-input>
+                </ion-item>
+              </div>
+            </div>
+            <div id="medecin" class="ion-margin-start" style="display: none;">
+              <div>
+                <ion-item>
+                  <ion-label position="stacked">Veuillez sélectionnez votre diplome <ion-text color="danger"> ( cette donnée ne sera pas stocké, elle sera directement transmise à un responsable)</ion-text>
+                  </ion-label>
+                  <ion-input clearInput type="file"></ion-input>
+                </ion-item>
+              </div>
+              <div>
+                <ion-item>
+                  <ion-label position="stacked" >Veuillez sélectionnez votre carte d'identité <ion-text color="danger"> ( cette donnée ne sera pas stocké, elle sera directement transmise à un responsable)</ion-text></ion-label>
+                  <ion-input clearInput type="file"></ion-input>
+                </ion-item>
+              </div>
             </div>
             <div class="ion-margin">
               <ion-button type="submit" shape="round" fill="solid" size="medium">Créer un compte</ion-button>

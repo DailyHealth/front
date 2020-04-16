@@ -41,13 +41,18 @@ export class PatientListPage implements OnInit {
   }
 
   setFilteredItems() {
-    this.patients = this.filterItems(this.searchTerm)  
-  }
-
-  filterItems(searchTerm) {
-    return this.patients.filter(item => {
-      return item.LastName.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
-    });
+    this.httpClient
+      .get<any[]>(environment.server + "api/GetListUser.php?role=P")
+      .subscribe(
+        (response) => {
+          this.patients = response.filter(item => {
+            return item.LastName.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1;
+          });
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 
 }
