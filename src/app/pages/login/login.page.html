@@ -1,66 +1,68 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
     <ion-title>Se connecter</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <form *ngIf="!auth.isAuthenticated()" [formGroup]="loginForm" (submit)="login()" >
-      <ion-grid>
-        <ion-card>
-          <ion-card-header>
-            <ion-card-title>Connexion</ion-card-title>
-            <ion-card-subtitle>Entrez les informations</ion-card-subtitle>
-          </ion-card-header>
-          <ion-card-content>
-            <ion-col>
-              <div> 
-                <ion-item>
-                  <ion-label position="floating">Adresse email&nbsp;<ion-text
-                      color="danger">*</ion-text>
-                  </ion-label>
-                  <ion-input required clearInput type="email" formControlName="email" ></ion-input>
-                </ion-item>
-              </div>
-              <div>
-                <ion-item>
-                  <ion-label  position="floating">Mot de passe&nbsp;<ion-text
-                      color="danger">*</ion-text>
-                  </ion-label>
-                  <ion-input type="password" required clearInput formControlName="password"></ion-input>
-                </ion-item>
-              </div>
-              <div class="ion-margin">
-                <ion-button [disabled]="loginForm.invalid" type="submit" shape="round" fill="solid" size="medium">Se connecter</ion-button>
-              </div>
-              <div>
-                <ion-label color="primary" class="ion-margin-top" [routerLink]="['/register']">Je n'ai pas encore de
-                  compte
+  <form *ngIf="!auth.isAuthenticated()" [formGroup]="loginForm" (submit)="login()">
+    <ion-grid>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Connexion</ion-card-title>
+          <ion-card-subtitle>Entrez les informations</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-col>
+            <div>
+              <ion-item>
+                <ion-label position="floating">Adresse email&nbsp;<ion-text color="danger">*</ion-text>
                 </ion-label>
-              </div>
-            </ion-col>
-
-            <div class="ion-margin">
-              <ion-text color="danger">
-                <h1>{{error}}</h1>
-              </ion-text>
+                <ion-input required clearInput type="email" formControlName="email"></ion-input>
+              </ion-item>
             </div>
-          </ion-card-content>
-        </ion-card>
-      </ion-grid>
-    </form>
-      <ion-grid *ngIf="auth.isAuthenticated()" class="ion-text-center">
-        <ion-card>
-          <ion-card-header>
-            <ion-card-title>Déconnexion</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <ion-col>
-              <div class="ion-margin">
-                <ion-button  (click)="logout()" shape="round" fill="solid" size="medium">Se déconnecter</ion-button>
-              </div>
-            </ion-col>
-          </ion-card-content>
-        </ion-card>
-      </ion-grid>
+            <div>
+              <ion-item>
+                <ion-label position="floating">Mot de passe&nbsp;<ion-text color="danger">*</ion-text>
+                </ion-label>
+                <ion-input type="password" required clearInput formControlName="password"></ion-input>
+              </ion-item>
+            </div>
+            <div class="ion-margin">
+              <ion-button [disabled]="loginForm.invalid" type="submit" shape="round" fill="solid" size="medium">Se
+                connecter</ion-button>
+            </div>
+            <div>
+              <ion-label color="primary" class="ion-margin-top" [routerLink]="['/register']">Je n'ai pas encore de
+                compte
+              </ion-label>
+            </div>
+          </ion-col>
+
+          <div class="ion-margin">
+            <ion-text color="danger">
+              <h1>{{error}}</h1>
+            </ion-text>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </ion-grid>
+  </form>
+  <ion-grid *ngIf="auth.isAuthenticated()" class="ion-text-center">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Déconnexion</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-col>
+          <div class="ion-margin">
+            <ion-button (click)="logout()" shape="round" fill="solid" size="medium">Se déconnecter</ion-button>
+          </div>
+        </ion-col>
+      </ion-card-content>
+    </ion-card>
+  </ion-grid>
 </ion-content>

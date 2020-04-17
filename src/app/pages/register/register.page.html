@@ -1,5 +1,8 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
     <ion-title>Création d'un compte</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -44,7 +47,8 @@
             </div>
             <div>
               <ion-item>
-                <ion-label>Etes vous un patient ou un médecin ?&nbsp;&nbsp;<ion-text color="danger">*</ion-text></ion-label>
+                <ion-label>Etes vous un patient ou un médecin ?&nbsp;&nbsp;<ion-text color="danger">*</ion-text>
+                </ion-label>
                 <ion-select formControlName="role" required #role name="role" (ionChange)="onChangeRole(role.value)">
                   <ion-select-option value="P">Patient</ion-select-option>
                   <ion-select-option value="M">Médecin</ion-select-option>
@@ -77,20 +81,24 @@
             <div id="medecin" class="ion-margin-start" style="display: none;">
               <div>
                 <ion-item>
-                  <ion-label position="stacked">Veuillez sélectionnez votre diplome <ion-text color="danger"> ( cette donnée ne sera pas stocké, elle sera directement transmise à un responsable)</ion-text>
+                  <ion-label position="stacked">Veuillez sélectionnez votre diplome <ion-text color="danger"> ( cette
+                      donnée ne sera pas stocké, elle sera directement transmise à un responsable)</ion-text>
                   </ion-label>
                   <ion-input clearInput type="file"></ion-input>
                 </ion-item>
               </div>
               <div>
                 <ion-item>
-                  <ion-label position="stacked" >Veuillez sélectionnez votre carte d'identité <ion-text color="danger"> ( cette donnée ne sera pas stocké, elle sera directement transmise à un responsable)</ion-text></ion-label>
+                  <ion-label position="stacked">Veuillez sélectionnez votre carte d'identité <ion-text color="danger"> (
+                      cette donnée ne sera pas stocké, elle sera directement transmise à un responsable)</ion-text>
+                  </ion-label>
                   <ion-input clearInput type="file"></ion-input>
                 </ion-item>
               </div>
             </div>
             <div class="ion-margin">
-              <ion-button  [disabled]="registerForm.invalid" type="submit" shape="round" fill="solid" size="medium">Créer un compte</ion-button>
+              <ion-button [disabled]="registerForm.invalid" type="submit" shape="round" fill="solid" size="medium">Créer
+                un compte</ion-button>
             </div>
           </ion-col>
         </ion-card-content>

@@ -1,5 +1,8 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
     <ion-title>Liste des patients <ion-badge *ngIf="medecins != null" color="secondary" mode="ios">{{medecins.length}}
       </ion-badge>
     </ion-title>

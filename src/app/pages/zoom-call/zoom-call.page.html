@@ -1,5 +1,8 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
     <ion-title>Appel vidéo avec zoom</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -17,7 +20,7 @@
     </ion-card-content>
   </ion-card>
   <ion-card *ngIf="data['Role'] == 'A' || data['Role'] == 'M' ">
-    <ion-card-header color="primary" >
+    <ion-card-header color="primary">
       Création d'une réunion zoom (vous devez posséder un compte zoom)
     </ion-card-header>
     <ion-card-content>
@@ -30,7 +33,7 @@
     </ion-card-content>
   </ion-card>
   <ion-card *ngIf="data['Role'] == 'A' || data['Role'] == 'M' ">
-    <form [formGroup]="zoomForm" (submit)="submitFormZoom()" >
+    <form [formGroup]="zoomForm" (submit)="submitFormZoom()">
       <ion-card-header color="secondary">
         Insérer le lien ( url ) de l'appelle zoom
       </ion-card-header>
@@ -39,7 +42,7 @@
           <ion-label position="stacked">Lien&nbsp;<ion-text color="danger">*</ion-text>
           </ion-label>
           <ion-input required type="text" formControlName="url"></ion-input>
-        </ion-item>        
+        </ion-item>
         <ion-button type="submit" expand="block" fill="outline" shape="round">
           Envoyer
         </ion-button>
