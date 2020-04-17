@@ -55,7 +55,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
   },
   {
-    path: 'zoom-call',
+    path: 'zoom-call/:idp/:idm',
     loadChildren: () => import('./pages/zoom-call/zoom-call.module').then( m => m.ZoomCallPageModule),
     canActivate: [AuthGuard]
   },

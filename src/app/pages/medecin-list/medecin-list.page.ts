@@ -11,52 +11,26 @@ import { ActivatedRoute } from '@angular/router';
 export class MedecinListPage implements OnInit {
 
   public medecins;
-  public searchTerm : string = "";
+  public searchTerm: string = "";
 
-  constructor(private httpClient : HttpClient,
-              private route: ActivatedRoute) { }
+
+  constructor(private httpClient: HttpClient,
+    private route: ActivatedRoute) { }
+
+ 
 
   ngOnInit() {
-      this.getMedecinsFromServer();
-     
-          
+   
+    this.getMedecinsFromServer();
   }
 
-
-  /**
-   * Fonction qui ajouter les données du formulaire d'ajout de la recette à la base
-   * @param dataForm Donnée du formulaire à ajouter
-   */
-  addRecetteToServer() {
-    let headers = new HttpHeaders();
-    let url = environment.server + "index.php";
-    let dataForm = {"action":5};
-
-    
-    console.log(JSON.stringify(dataForm));   
-    headers = headers.set('Content-Type' , 'application/x-www-form-urlencoded; charset=UTF-8');
-    let options = { headers: headers };
-    
-    this.httpClient
-      .post(url, JSON.stringify(dataForm), options)
-      .subscribe(
-        (data) => {
-          console.log(data);
-        },
-        (error) => {
-          console.log( error);
-        }
-      );
-      
-  }
 
   getMedecinsFromServer() {
     this.httpClient
       .get<any[]>(environment.server + "api/GetListUser.php?role=M")
       .subscribe(
         (response) => {
-          this.medecins = response;    
-          console.log(this.medecins );       
+          this.medecins = response;
         },
         (error) => {
           console.log(error);

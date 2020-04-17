@@ -4,19 +4,19 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding *ngIf="data != null">
   <ion-card>
     <ion-card-header color="warning">
       <ion-text>Ce que vous pouvez faire : </ion-text>
     </ion-card-header>
     <ion-card-content>
       <ul>
-        <li *ngIf="auth.data['Role'] == 'A' || auth.data['Role'] == 'M'">Créer une réunion zoom</li>
+        <li *ngIf="data['Role'] == 'A' || data['Role'] == 'M'">Créer une réunion zoom</li>
         <li>Rejoindre une réunion zoom</li>
       </ul>
     </ion-card-content>
   </ion-card>
-  <ion-card *ngIf="auth.data['Role'] == 'A' || auth.data['Role'] == 'M'">
+  <ion-card *ngIf="data['Role'] == 'A' || data['Role'] == 'M' ">
     <ion-card-header color="primary" >
       Création d'une réunion zoom (vous devez posséder un compte zoom)
     </ion-card-header>
@@ -29,8 +29,8 @@
       </ion-item>
     </ion-card-content>
   </ion-card>
-  <ion-card *ngIf="auth.data['Role'] == 'A' || auth.data['Role'] == 'M'">
-    <form onsubmit="postUrlZoom(event)">
+  <ion-card *ngIf="data['Role'] == 'A' || data['Role'] == 'M' ">
+    <form [formGroup]="zoomForm" (submit)="submitFormZoom()" >
       <ion-card-header color="secondary">
         Insérer le lien ( url ) de l'appelle zoom
       </ion-card-header>
@@ -38,8 +38,8 @@
         <ion-item>
           <ion-label position="stacked">Lien&nbsp;<ion-text color="danger">*</ion-text>
           </ion-label>
-          <ion-input required type="text" oninput="handleLastNameValue(event)"></ion-input>
-        </ion-item>
+          <ion-input required type="text" formControlName="url"></ion-input>
+        </ion-item>        
         <ion-button type="submit" expand="block" fill="outline" shape="round">
           Envoyer
         </ion-button>
@@ -52,7 +52,7 @@
     </ion-card-header>
     <ion-card-content>
       <ion-item>
-        <ion-text *ngIf="url != null">Lien :&nbsp;<a target="_blank" [href]="url">{{url}}</a></ion-text>
+        <ion-text>Lien :&nbsp;<a target="_blank" [href]="url">{{url}}</a></ion-text>
       </ion-item>
     </ion-card-content>
   </ion-card>
