@@ -13,6 +13,8 @@ export class RegisterService {
     private router: Router) { }
 
   register(dataform : FormData) {
+    console.log(dataform);
+    
     let headers = new HttpHeaders();
     let url = environment.server + "api/CreateUser.php";
 

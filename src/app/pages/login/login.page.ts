@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { LoginService } from 'src/app/service/login/login.service';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/service/auth/authentication.service';
@@ -12,23 +12,22 @@ import { AuthenticationService } from 'src/app/service/auth/authentication.servi
 export class LoginPage implements OnInit {
 
   loginForm: FormGroup;
-  error : string = "";
+  error: string = "";
 
-  constructor(private formBuilder : FormBuilder,private loginService : LoginService, public auth : AuthenticationService) { }
+  constructor(private formBuilder: FormBuilder, private loginService: LoginService, public auth: AuthenticationService) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.required],
       password: ['', Validators.required],
     });
+  }
 
-    }
+  login() {
+    this.loginService.login(this.loginForm.get('email').value, this.loginForm.get('password').value, this.error);
+  }
 
-    login(){
-      this.loginService.login( this.loginForm.get('email').value,this.loginForm.get('password').value, this.error);
-    }
-
-    logout(){
-      this.auth.logout();
-    }
+  logout() {
+    this.auth.logout();
+  }
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { RegisterService } from 'src/app/service/register/register.service';
 
 @Component({
   selector: 'app-register',
@@ -8,14 +10,23 @@ import { Router } from '@angular/router';
 })
 export class RegisterPage implements OnInit {
   
-  constructor(private  router:  Router) { }
+  registerForm: FormGroup;
+  
+  constructor(private  router:  Router, private registerService : RegisterService, private formBuilder : FormBuilder) { }
 
   ngOnInit() {
+    this.registerForm = this.formBuilder.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      role: ['', Validators.required]
+    });
   }
 
-  register(form) {
-    
-  }
+  register() {
+      this.registerService.register(this.registerForm.value);
+   }
 
   onChangeRole(value){
     let divPatient = document.getElementById("patient");
