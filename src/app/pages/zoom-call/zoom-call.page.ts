@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastController, Platform } from '@ionic/angular';
-import { Zoom } from '@ionic-native/zoom/ngx';
+import { AuthenticationService } from 'src/app/service/auth/authentication.service';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-zoom-call',
@@ -10,11 +10,17 @@ import { Zoom } from '@ionic-native/zoom/ngx';
 export class ZoomCallPage implements OnInit {
 
   public url : string = "";
+  data : [];
 
-  constructor() { }
+  constructor(public auth : AuthenticationService, private storage : Storage) { }
 
   ngOnInit() {
     this.getUrl();
+    this.storage.get('dataUser').then((val) => {
+      console.log(val);
+      
+      this.data = val; 
+    });
   }
 
   getUrl(){

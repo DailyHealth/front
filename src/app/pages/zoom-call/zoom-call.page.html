@@ -11,13 +11,13 @@
     </ion-card-header>
     <ion-card-content>
       <ul>
-        <li>Créer une réunion zoom</li>
+        <li *ngIf="auth.data['Role'] == 'A' || auth.data['Role'] == 'M'">Créer une réunion zoom</li>
         <li>Rejoindre une réunion zoom</li>
       </ul>
     </ion-card-content>
   </ion-card>
-  <ion-card>
-    <ion-card-header color="primary">
+  <ion-card *ngIf="auth.data['Role'] == 'A' || auth.data['Role'] == 'M'">
+    <ion-card-header color="primary" >
       Création d'une réunion zoom (vous devez posséder un compte zoom)
     </ion-card-header>
     <ion-card-content>
@@ -29,7 +29,7 @@
       </ion-item>
     </ion-card-content>
   </ion-card>
-  <ion-card>
+  <ion-card *ngIf="auth.data['Role'] == 'A' || auth.data['Role'] == 'M'">
     <form onsubmit="postUrlZoom(event)">
       <ion-card-header color="secondary">
         Insérer le lien ( url ) de l'appelle zoom
@@ -47,7 +47,7 @@
     </form>
   </ion-card>
   <ion-card>
-    <ion-card-header color="success">
+    <ion-card-header color="success" *ngIf="auth.data['Role'] == 'A' || auth.data['Role'] == 'P'">
       Cliquez sur le lien pour rejoindre la consultation
     </ion-card-header>
     <ion-card-content>
