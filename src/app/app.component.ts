@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { AuthenticationService } from './service/auth/authentication.service';
+import { Storage } from '@ionic/storage';
+
 
 @Component({
   selector: 'app-root',
@@ -18,63 +21,74 @@ export class AppComponent implements OnInit {
       url: 'acceuil',
       icon: 'home',
       color: 'primary',
-      info : 'Page d\'accueil'
+      info : 'Page d\'accueil',
+      role:  ['A','P','M']
     },
     {
       title: 'Daily Check',
       url: 'dailycheck',
       icon: 'heart-circle',
       color:'danger',
-      info: ''
+      info: '',
+      role: ['A','P']
     },
     {
       title: 'Médecins',
       url: 'medecin-list',
       icon: 'medkit',
       color:'success',
-      info: ''
+      info: '',
+      role : ['A','P']
     },
     {
       title: 'Patients',
       url: 'patient-list',
       icon: 'people-circle',
       color:'warning',
-      info: ''
+      info: '',
+      role:['A','M']
     },
     {
       title: 'Rejoindre un appel',
       url: 'zoom-call',
       icon: 'videocam',
       color:'tertiary',
-      info: ''
+      info: '',
+      role: ['A','P','M']
     },
     {
-      title: 'Login',
+      title: 'Connexion/Déconnexion',
       url: 'login',
       icon: 'person',
       color: 'secondary',
-      info: ''
+      info: '',
+      role : ['A','P','M']
     },
     {
       title: 'Historiques',
       url: 'history',
       icon: 'archive',
-      color:'black'
+      color:'black',
+      role:  ['A','P']
     },
     {
       title: 'Satistique',
       url: 'stat',
       icon: 'bar-chart',
-      color: 'medium'
+      color: 'medium',
+      role:  ['A','P']
     },
   
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Reminders'];
+ 
+  data:[];
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    public auth : AuthenticationService,
+    private storage : Storage
   ) {
     this.initializeApp();
   }
@@ -86,10 +100,25 @@ export class AppComponent implements OnInit {
     });
   }
 
+  isShow(page, value) : boolean{
+    let role = page['role'];    
+    let res = role.find(e => e === value);  
+    
+    return res == undefined ? false : true ;
+  }
+
   ngOnInit() {
     const path = window.location.pathname.split('folder/')[1];
     if (path !== undefined) {
       this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
+
+    this.storage.get('dataUser').then((val) => {
+      console.log(val);
+      
+      this.data = val; 
+    });
+    
   }
+  
 }

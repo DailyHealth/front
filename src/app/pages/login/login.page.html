@@ -5,8 +5,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-text class="ion-text-center">
-    <form [formGroup]="loginForm" (submit)="login()" >
+    <form *ngIf="!auth.isAuthenticated()" [formGroup]="loginForm" (submit)="login()" >
       <ion-grid>
         <ion-card>
           <ion-card-header>
@@ -15,12 +14,12 @@
           </ion-card-header>
           <ion-card-content>
             <ion-col>
-              <div>
+              <div> 
                 <ion-item>
-                  <ion-label name="email" position="floating">Adresse email&nbsp;<ion-text
+                  <ion-label position="floating">Adresse email&nbsp;<ion-text
                       color="danger">*</ion-text>
                   </ion-label>
-                  <ion-input required clearInput type="email"></ion-input>
+                  <ion-input required clearInput type="email" formControlName="email" ></ion-input>
                 </ion-item>
               </div>
               <div>
@@ -28,7 +27,7 @@
                   <ion-label  position="floating">Mot de passe&nbsp;<ion-text
                       color="danger">*</ion-text>
                   </ion-label>
-                  <ion-input type="password" required clearInput ></ion-input>
+                  <ion-input type="password" required clearInput formControlName="password"></ion-input>
                 </ion-item>
               </div>
               <div class="ion-margin">
@@ -41,7 +40,7 @@
               </div>
             </ion-col>
 
-            <div *ngIf="error != null" class="ion-margin">
+            <div class="ion-margin">
               <ion-text color="danger">
                 <h1>{{error}}</h1>
               </ion-text>
@@ -50,5 +49,18 @@
         </ion-card>
       </ion-grid>
     </form>
-  </ion-text>
+      <ion-grid *ngIf="auth.isAuthenticated()" class="ion-text-center">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Déconnexion</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-col>
+              <div class="ion-margin">
+                <ion-button  (click)="logout()" shape="round" fill="solid" size="medium">Se déconnecter</ion-button>
+              </div>
+            </ion-col>
+          </ion-card-content>
+        </ion-card>
+      </ion-grid>
 </ion-content>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { LoginService } from 'src/app/service/login.service';
+import {Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { LoginService } from 'src/app/service/login/login.service';
+import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/service/auth/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -9,24 +11,24 @@ import { LoginService } from 'src/app/service/login.service';
 })
 export class LoginPage implements OnInit {
 
-  public loginForm: FormGroup;
-  public error : string = "";
+  loginForm: FormGroup;
+  error : string = "";
 
-  constructor(private loginService : LoginService, private formBuilder : FormBuilder) { }
+  constructor(private formBuilder : FormBuilder,private loginService : LoginService, public auth : AuthenticationService) { }
 
   ngOnInit() {
-    this.initForm();
-    }
+    this.loginForm = this.formBuilder.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required],
+    });
 
-    initForm() {
-      this.loginForm = this.formBuilder.group({
-        email: ['', Validators.required],
-        password: ['', Validators.required],
-      });
     }
-
 
     login(){
-      this.loginService.login( this.loginForm.value.get('email'),this.loginForm.value.get('password'), this.error);
+      this.loginService.login( this.loginForm.get('email').value,this.loginForm.get('password').value, this.error);
+    }
+
+    logout(){
+      this.auth.logout();
     }
 }

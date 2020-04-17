@@ -8,9 +8,10 @@
   <ion-grid class="ion-text-center">
     <ion-col size-sm="12">
       <ion-text>
-        <h1>Bonjour</h1>
+        <h1>Bonjour <ion-text *ngIf="auth.isAuthenticated()" color="primary">{{data['FirstName']}} </ion-text></h1>
       </ion-text>
     </ion-col>
+    <div *ngIf="auth.isAuthenticated()">
     <ion-col size-sm="12">
       <ion-text>
         <h2>
@@ -32,5 +33,22 @@
         </h2>
       </ion-text>
     </ion-col>
+    </div>
+    <div *ngIf="!auth.isAuthenticated()">
+      <ion-col size-sm="12">
+        <ion-text>
+          <h2>
+            Veuillez vous connectez avant de continuer
+          </h2>
+        </ion-text>
+      </ion-col>
+      <ion-col size-sm="12">
+        <ion-text>
+          <h2>
+            <ion-button size="large" shape="round" fill="outline" [routerLink]="['/login']">Me connecter</ion-button>
+          </h2>
+        </ion-text>
+      </ion-col>
+    </div>
   </ion-grid>
 </ion-content>

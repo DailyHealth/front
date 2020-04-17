@@ -29,7 +29,7 @@ export class MedecinPage implements OnInit {
       .subscribe(
         (response) => {
             this.medecin = response[0];  
-            console.log( this.medecin);
+            console.log(this.medecin);
         },
         (error) => {
           console.log('Erreur ! : ' + error);
