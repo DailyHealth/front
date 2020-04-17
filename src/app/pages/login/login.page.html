@@ -4,48 +4,51 @@
   </ion-toolbar>
 </ion-header>
 
+<ion-content>
+  <ion-text class="ion-text-center">
+    <form [formGroup]="loginForm" (submit)="login()" >
+      <ion-grid>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Connexion</ion-card-title>
+            <ion-card-subtitle>Entrez les informations</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-col>
+              <div>
+                <ion-item>
+                  <ion-label name="email" position="floating">Adresse email&nbsp;<ion-text
+                      color="danger">*</ion-text>
+                  </ion-label>
+                  <ion-input required clearInput type="email"></ion-input>
+                </ion-item>
+              </div>
+              <div>
+                <ion-item>
+                  <ion-label  position="floating">Mot de passe&nbsp;<ion-text
+                      color="danger">*</ion-text>
+                  </ion-label>
+                  <ion-input type="password" required clearInput ></ion-input>
+                </ion-item>
+              </div>
+              <div class="ion-margin">
+                <ion-button [disabled]="loginForm.invalid" type="submit" shape="round" fill="solid" size="medium">Se connecter</ion-button>
+              </div>
+              <div>
+                <ion-label color="primary" class="ion-margin-top" [routerLink]="['/register']">Je n'ai pas encore de
+                  compte
+                </ion-label>
+              </div>
+            </ion-col>
 
-<ion-grid>
- 
-    <ion-grid class="ion-text-center">
-      <ion-card>
-        <ion-card-header>
-          <ion-card-title>Connexion</ion-card-title>
-          <ion-card-subtitle>Entrez les informations</ion-card-subtitle>
-        </ion-card-header>
-        <ion-card-content>
-          <form (submit)="login()">
-          <ion-col>
-            <div>
-              <ion-item>
-                <ion-label [(ngModel)]="email" name="email" position="floating">Adresse email&nbsp;<ion-text color="danger">*</ion-text>
-                </ion-label>
-                <ion-input required clearInput type="email"></ion-input>
-              </ion-item>
+            <div *ngIf="error != null" class="ion-margin">
+              <ion-text color="danger">
+                <h1>{{error}}</h1>
+              </ion-text>
             </div>
-            <div>
-              <ion-item>
-                <ion-label [(ngModel)]="password" name="password" position="floating">Mot de passe&nbsp;<ion-text color="danger">*</ion-text>
-                </ion-label>
-                <ion-input required clearInput type="password"></ion-input>
-              </ion-item>
-            </div>
-            <div class="ion-margin">
-              <ion-button type="submit" shape="round" fill="solid" size="medium">Se connecter</ion-button>
-            </div>           
-            <div>
-              <ion-label color="primary" class="ion-margin-top" [routerLink]="['/register']">Je n'ai pas encore de compte</ion-label>
-            </div>
-          </ion-col>
-        </form>
-        <div *ngIf="error != null" class="ion-margin">
-          <ion-text color="danger">
-            <h1>{{error}}</h1>
-          </ion-text>
-        </div>
-        </ion-card-content>
-      </ion-card>
-    </ion-grid>
-  
- 
-</ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </ion-grid>
+    </form>
+  </ion-text>
+</ion-content>

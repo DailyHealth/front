@@ -6,19 +6,20 @@ import { Observable, BehaviorSubject } from  'rxjs';
 import { Storage } from  '@ionic/storage';
 import { User } from  './user';
 import { AuthResponse } from  './auth-response';
+import {environment } from '../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  AUTH_SERVER_ADDRESS:  string  =  'http://localhost:8050/';
-  authSubject  =  new  BehaviorSubject(false);
+  public AUTH_SERVER_ADDRESS:  string  =  environment.server;
+  public authSubject  =  new  BehaviorSubject(false);
 
   constructor(private  httpClient:  HttpClient, private  storage:  Storage) { }
 
   register(user: User): Observable<AuthResponse> {
-    return this.httpClient.post<AuthResponse>(`${this.AUTH_SERVER_ADDRESS}/register`, user).pipe(
+    return this.httpClient.post<AuthResponse>(`${this.AUTH_SERVER_ADDRESS}api/CreateUser.php`, user).pipe(
       tap(async (res:  AuthResponse ) => {
 
         if (res.user) {
