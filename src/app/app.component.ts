@@ -15,6 +15,8 @@ import { Storage } from '@ionic/storage';
 export class AppComponent implements OnInit {
 
   public selectedIndex = 0;
+  data : [];
+
   public appPages = [
     {
       title: 'Accueil',
@@ -48,14 +50,16 @@ export class AppComponent implements OnInit {
       info: '',
       role:['A','M']
     },
+    /*
     {
       title: 'Rejoindre un appel',
-      url: 'zoom-call',
+      url: 'zoom-call/'+ this.data != undefined ? this.data['idUser'] : '0' + '/' + this.data !=  undefined ? this.data['IdMedecin'] : '0',
       icon: 'videocam',
       color:'tertiary',
       info: '',
       role: ['A','P','M']
     },
+    */
     {
       title: 'Connexion/Déconnexion',
       url: 'login',
@@ -73,8 +77,6 @@ export class AppComponent implements OnInit {
     },
   
   ];
- 
-  data:[];
 
   constructor(
     private platform: Platform,
@@ -101,16 +103,17 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.storage.get('dataUser').then((val) => {
+        this.data = val; 
+    });
+
     const path = window.location.pathname.split('folder/')[1];
     if (path !== undefined) {
       this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
 
-    this.storage.get('dataUser').then((val) => {
-      console.log(val);
-      
-      this.data = val; 
-    });
+
     
   }
   

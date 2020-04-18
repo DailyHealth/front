@@ -44,7 +44,7 @@ export class ZoomCallPage implements OnInit {
 
   ngOnInit() {
     this.medecinID = this.route.snapshot.paramMap.get('idp');   
-    this.patientID = this.route.snapshot.paramMap.get('idm');   
+    this.patientID = this.route.snapshot.paramMap.get('idm'); 
     this.loadStorage();
     this.getZoomDataByPatientId();
   }

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { ActivatedRoute } from '@angular/router';
 import { Storage } from '@ionic/storage';
+import { CallNumber } from '@ionic-native/call-number/ngx';
 
 
 @Component({
@@ -17,7 +18,9 @@ export class MedecinPage implements OnInit {
   data: [];
 
   constructor(private httpClient: HttpClient,
-    private route: ActivatedRoute, private storage: Storage) { }
+    private route: ActivatedRoute,
+    private callNumber: CallNumber,
+    private storage: Storage) { }
 
 
 
@@ -29,7 +32,6 @@ export class MedecinPage implements OnInit {
     console.log(this.medecinID);
 
     this.getMedecinById(this.medecinID);
-
   }
 
 
@@ -44,6 +46,12 @@ export class MedecinPage implements OnInit {
           console.log('Erreur ! : ' + error);
         }
       );
+  }
+
+  startCall(number : string){
+    this.callNumber.callNumber(number, true)
+                   .then(res => console.log('Launched dialer!', res))
+                   .catch(err => console.log('Error launching dialer', err));
   }
 
 
