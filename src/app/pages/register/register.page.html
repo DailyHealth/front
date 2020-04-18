@@ -46,6 +46,23 @@
               </ion-item>
             </div>
             <div>
+              <ion-radio-group value="type" required formControlName="type">
+                <ion-list-header>
+                  <ion-label>Genre<ion-text color="danger">*</ion-text></ion-label>
+                </ion-list-header>
+            
+                <ion-item>
+                  <ion-label>Homme</ion-label>
+                  <ion-radio slot="start" value="F"></ion-radio>
+                </ion-item>
+            
+                <ion-item>
+                  <ion-label>Femme</ion-label>
+                  <ion-radio slot="start" value="H"></ion-radio>
+                </ion-item>
+                </ion-radio-group>
+            </div>
+            <div>
               <ion-item>
                 <ion-label>Etes vous un patient ou un médecin ?&nbsp;&nbsp;<ion-text color="danger">*</ion-text>
                 </ion-label>
@@ -67,14 +84,14 @@
                 <ion-item>
                   <ion-label position="floating">Poids
                   </ion-label>
-                  <ion-input clearInput type="number"></ion-input>
+                  <ion-input formControlName="weight" name="weight" clearInput type="number"></ion-input>
                 </ion-item>
               </div>
               <div>
                 <ion-item>
                   <ion-label position="floating">Taille
                   </ion-label>
-                  <ion-input clearInput type="number"></ion-input>
+                  <ion-input formControlName="height" name="height"  clearInput type="number"></ion-input>
                 </ion-item>
               </div>
             </div>

@@ -20,8 +20,11 @@ export class RegisterPage implements OnInit {
       password: ['', Validators.required],
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
+      type: ['', Validators.required],
       role: ['', Validators.required],
-      age: ['']
+      age: [''],
+      height:[''],
+      weight:['']
     });
   }
 
