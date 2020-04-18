@@ -71,13 +71,6 @@ export class AppComponent implements OnInit {
       color:'black',
       role:  ['A','P']
     },
-    {
-      title: 'Satistique',
-      url: 'stat',
-      icon: 'bar-chart',
-      color: 'medium',
-      role:  ['A','P']
-    },
   
   ];
  
