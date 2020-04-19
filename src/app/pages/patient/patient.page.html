@@ -8,4 +8,28 @@
 </ion-header>
 
 <ion-content>
+  <div class="data">
+    <span class="data-title"> INFORMATIONS PATIENT </span> <br>
+    
+    <div class="item">
+      <span class="data-subtitle"> Identificants </span> <br>
+      ID du Patient : {{patient.id}} <br>
+      ID du Médecin : {{patient.medecinid}} <br>
+    </div>
+
+    <div class="item"> 
+      <span class="data-subtitle"> Informations Personnel </span> <br>
+      Type : {{patient.type}} <br>
+      Prénom : {{patient.firstname}} <br>
+      Nom : {{patient.lastname}} <br>
+      Email : {{patient.email}} <br>
+    </div>
+    
+    <div class="item"> 
+      <span class="data-subtitle"> Informations Santé </span> <br>
+      Age : {{patient.age}} <br>
+      Poids : {{patient.height}} <br>
+      Taille : {{patient.weight}} <br>
+    </div>
+  </div>
 </ion-content>
