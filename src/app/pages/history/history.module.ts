@@ -8,12 +8,15 @@ import { HistoryPageRoutingModule } from './history-routing.module';
 
 import { HistoryPage } from './history.page';
 
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    HistoryPageRoutingModule
+    HistoryPageRoutingModule,
+    NgxDatatableModule,
   ],
   declarations: [HistoryPage]
 })

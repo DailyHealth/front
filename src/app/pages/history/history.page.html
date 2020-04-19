@@ -5,5 +5,45 @@
 </ion-header>
 
 <ion-content>
+  <ion-card-content>
+    <div class="ion-padding">
 
+      <!-- Theme classes dark, material, bootstrap -->
+      <ngx-datatable class="material" [limit]="8" [rows]="rows" [rowHeight]="50" [columnMode]="'force'" [sortType]="'multi'" [headerHeight]="50" [footerHeight]="50">
+
+        <ngx-datatable-column name="Date">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.date * 1000 | date }}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Temperature">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.Temperature}}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Pouls">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.Poux}}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Fatigue">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.Tiredness == 1 ? 'Pas du Tout' : row.Tiredness == 2  ?  'Un peu' : 'Beaucoup' }}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Humeur">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.Mood}}
+          </ng-template>
+        </ngx-datatable-column>
+
+      </ngx-datatable>
+    </div>
+  </ion-card-content> 
+
+  <div id="chartContainer" style="height: 370px; width: 100%;"></div>
 </ion-content>
