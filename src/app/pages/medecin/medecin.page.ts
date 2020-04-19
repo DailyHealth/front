@@ -52,14 +52,6 @@ export class MedecinPage implements OnInit {
   }
 
 
-  /*
-  startCall(number : string){
-    this.callNumber.callNumber(number, true)
-                   .then(res => console.log('Launched dialer!', res))
-                   .catch(err => console.log('Error launching dialer', err));
-  }
-  */
-
  async presentToast() {
   const toast = await this.toastController.create({
     message: 'Bientot disponible !',

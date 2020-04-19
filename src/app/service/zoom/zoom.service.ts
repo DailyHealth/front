@@ -8,29 +8,29 @@ import { Router } from '@angular/router';
 })
 export class ZoomService {
 
-  constructor(private httpClient : HttpClient, private router : Router) { }
+  constructor(private httpClient: HttpClient, private router: Router) { }
 
-  postUrlZoom(formData){
+  postUrlZoom(formData) {
     let headers = new HttpHeaders();
-    
+
     let url = environment.server + "api/CreateZoom.php";
 
-    headers = headers.set('Content-Type' , 'application/x-www-form-urlencoded; charset=UTF-8');
+    headers = headers.set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
     let options = { headers: headers };
-    
+
     this.httpClient
       .post(url, JSON.stringify(formData), options)
       .subscribe(
         (data) => {
-          if(data['status'] == "OK"){
+          if (data['status'] == "OK") {
 
-          }else{
+          } else {
             console.log("erreur", data['message']);
-          }        
+          }
         },
         (error) => {
           console.log("erreu", error.message);
         }
       );
-}
+  }
 }
