@@ -30,6 +30,7 @@
     "@ionic-native/zoom": "^5.23.0",
     "@ionic/angular": "^5.0.0",
     "@ionic/storage": "^2.2.0",
+    "@swimlane/ngx-datatable": "^17.0.0",
     "call-number": "^1.0.1",
     "cordova-android": "^8.1.0",
     "cordova-ios": "^5.1.1",
