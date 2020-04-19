@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { ActivatedRoute } from '@angular/router';
 import { Storage } from '@ionic/storage';
+import { ToastController } from '@ionic/angular';
 
 
 @Component({
@@ -17,6 +18,7 @@ export class MedecinPage implements OnInit {
   data: [];
 
   constructor(private httpClient: HttpClient,
+    private toastController : ToastController,
     private route: ActivatedRoute,
     private storage: Storage) { }
 
@@ -53,6 +55,15 @@ export class MedecinPage implements OnInit {
                    .catch(err => console.log('Error launching dialer', err));
   }
   */
+
+ async presentToast() {
+  const toast = await this.toastController.create({
+    message: 'Bientot disponible !',
+    color :"success",
+    duration: 2000
+  });
+  toast.present();
+}
 
 
 }
