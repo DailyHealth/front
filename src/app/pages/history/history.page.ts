@@ -27,16 +27,17 @@ export class HistoryPage implements OnInit {
       
       this.data = val;
       this.patientId = val.idUser;
+      this.getAllData(val.idUser);
     });
-    this.getAllData();
+    
     console.log(this.patientId);
       //console.log(this.getAllData());
       //this.Chart();
     }
 
-    getAllData(){
+    getAllData(ID : string){
       this.httpClient
-        .get<[]>(environment.server + "api/getDailyStatut.php?patientid=1")
+        .get<[]>(environment.server + "api/getDailyStatut.php?patientid=" + ID)
         .subscribe(
           (response) => {
             
