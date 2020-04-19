@@ -22,31 +22,35 @@ export class MedecinPage implements OnInit {
     private route: ActivatedRoute,
     private storage: Storage) { }
 
-
+    async getMedecinById(ID: string) {
+      this.httpClient
+        .get<any[]>(environment.server + "api/getUser.php?iduser=" + ID) // changer la route
+        .subscribe(
+          (response) => {
+            this.medecin = response;
+            console.log(response);
+            
+          },
+          (error) => {
+            console.log('Erreur ! : ' + error);
+          }
+        );
+    }
 
   ngOnInit() {
+    this.getMedecinById(this.route.snapshot.paramMap.get('id'));
+
+    this.initData()
+  }
+
+
+  async initData(){
     this.storage.get('dataUser').then((val) => {
-      this.data = val;
+      this.data = val;      
     });
-    this.medecinID = this.route.snapshot.paramMap.get('id');
-    console.log(this.medecinID);
-
-    this.getMedecinById(this.medecinID);
+ 
   }
 
-
-  getMedecinById(ID: number) {
-    this.httpClient
-      .get<any[]>(environment.server + "api/getUser.php?iduser=" + ID) // changer la route
-      .subscribe(
-        (response) => {
-          this.medecin = response;
-        },
-        (error) => {
-          console.log('Erreur ! : ' + error);
-        }
-      );
-  }
 
   /*
   startCall(number : string){

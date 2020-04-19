@@ -31,6 +31,8 @@ export class MedecinListPage implements OnInit {
       .subscribe(
         (response) => {
           this.medecins = response;
+          console.log(response);
+          
         },
         (error) => {
           console.log(error);
@@ -44,7 +46,7 @@ export class MedecinListPage implements OnInit {
     else return 1;
   }
 
-  setFilteredItems() {
+  async setFilteredItems() {
     this.httpClient
       .get<any[]>(environment.server + "api/GetListUser.php?role=M")
       .subscribe(

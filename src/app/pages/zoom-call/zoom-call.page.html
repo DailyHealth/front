@@ -26,7 +26,7 @@
     <ion-card-content>
       <ion-item>
         <a target="_blank" [href]="url">Je n'ai pas de compte zoom.</a>
-        <ion-button type="submit" expand="block" fill="outline" shape="round">
+        <ion-button type="submit" expand="block" fill="outline" shape="round" href="https://zoom.us/signup">
           Créer
         </ion-button>
       </ion-item>
@@ -35,22 +35,35 @@
   <ion-card *ngIf="data['Role'] == 'A' || data['Role'] == 'M' ">
     <form [formGroup]="zoomForm" (submit)="submitFormZoom()">
       <ion-card-header color="secondary">
-        Insérer le lien ( url ) de l'appelle zoom
+        Insérer le lien ( url ) de l'appelle zoom puis sélectionner le patient avec lequel vous souhaitez passer
+        l'appel.
       </ion-card-header>
       <ion-card-content>
-        <ion-item>
-          <ion-label position="stacked">Lien&nbsp;<ion-text color="danger">*</ion-text>
-          </ion-label>
-          <ion-input required type="text" formControlName="url"></ion-input>
-        </ion-item>
+        <ion-col size="6">
+          <ion-item>
+            <ion-label position="stacked">Lien&nbsp;<ion-text color="danger">*</ion-text>
+            </ion-label>
+            <ion-input required type="text" formControlName="url"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item>
+            <ion-label>Patient&nbsp;<ion-text color="danger">*</ion-text></ion-label>
+            <ion-select required formControlName="patientid" placeholder="Sélectionnez un patient">
+              <ion-select-option *ngFor="let patient of patients" [value]="patient.idUser">
+                {{patient.LastName | uppercase}}&nbsp;{{patient.FirstName}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+
         <ion-button type="submit" expand="block" fill="outline" shape="round">
           Envoyer
         </ion-button>
       </ion-card-content>
     </form>
   </ion-card>
-  <ion-card>
-    <ion-card-header color="success" *ngIf="auth.data['Role'] == 'A' || auth.data['Role'] == 'P'">
+  <ion-card *ngIf="auth.data['Role'] == 'A' || auth.data['Role'] == 'P'">
+    <ion-card-header color="success">
       Cliquez sur le lien pour rejoindre la consultation
     </ion-card-header>
     <ion-card-content>

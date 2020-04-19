@@ -23,8 +23,6 @@ export class ZoomService {
       .subscribe(
         (data) => {
           if(data['status'] == "OK"){
-          
-            this.router.navigate(['zoom-call']);
 
           }else{
             console.log("erreur", data['message']);

@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AuthenticationService } from './service/auth/authentication.service';
 import { Storage } from '@ionic/storage';
+import { timingSafeEqual } from 'crypto';
 
 
 @Component({
@@ -16,8 +17,46 @@ export class AppComponent implements OnInit {
 
   public selectedIndex = 0;
   data : [];
+  public idMedecin;
+  public idPatient;
+  public appPages;
+ 
 
-  public appPages = [
+  constructor(
+    private platform: Platform,
+    private splashScreen: SplashScreen,
+    private statusBar: StatusBar,
+    public auth : AuthenticationService,
+    private storage : Storage
+  ) {
+    this.initializeApp();
+  }
+
+  initializeApp() {
+    this.platform.ready().then(() => {
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
+    });
+  }
+
+  isShow(page, value) : boolean{
+    let role = page['role'];    
+    let res = role.find(e => e === value);  
+    
+    return res == undefined ? false : true ;
+  }
+
+  loadStorage(){
+    this.storage.get('dataUser').then((val) => {
+      this.data = val; 
+      console.log(val);
+    
+      this.idMedecin = val['IdMedecin'] == '0' ? val['idUser'] : val['IdMedecin'];
+      console.log("ID MEDECIN" , this.idMedecin);
+
+  });
+
+  this.appPages = [
     {
       title: 'Accueil',
       url: 'acceuil',
@@ -43,12 +82,20 @@ export class AppComponent implements OnInit {
       role : ['A','P']
     },
     {
+      title: 'Créer une réunion',
+      url: 'zoom-call/'+ this.idMedecin,
+      icon: 'videocam',
+      color:'tertiary',
+      info: '',
+      role: ['A','P','M']
+    },
+    {
       title: 'Patients',
       url: 'patient-list',
       icon: 'people-circle',
       color:'warning',
       info: '',
-      role:['A','M']
+      role: ['A','M']
     },
     /*
     {
@@ -77,44 +124,11 @@ export class AppComponent implements OnInit {
     },
   
   ];
-
-  constructor(
-    private platform: Platform,
-    private splashScreen: SplashScreen,
-    private statusBar: StatusBar,
-    public auth : AuthenticationService,
-    private storage : Storage
-  ) {
-    this.initializeApp();
-  }
-
-  initializeApp() {
-    this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
-    });
-  }
-
-  isShow(page, value) : boolean{
-    let role = page['role'];    
-    let res = role.find(e => e === value);  
-    
-    return res == undefined ? false : true ;
   }
 
   ngOnInit() {
 
-    this.storage.get('dataUser').then((val) => {
-        this.data = val; 
-    });
-
-    const path = window.location.pathname.split('folder/')[1];
-    if (path !== undefined) {
-      this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
-    }
-
-
-    
+    this.loadStorage();    
   }
   
 }

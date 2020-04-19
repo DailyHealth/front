@@ -9,11 +9,11 @@
 
 
 <ion-content>
-  <ion-grid *ngIf="medecin != null">
-    <ion-card class="ion-text-center">
+  <ion-grid>
+    <ion-card *ngIf="medecin != undefined" class="ion-text-center">
       <ion-card-header>
-        <ion-card-title>Dr.{{medecin.LastName}}</ion-card-title>
-        <ion-card-subtitle>{{medecin.Email}}</ion-card-subtitle>
+        <ion-card-title>Dr.{{medecin['firstname']}}</ion-card-title>
+        <ion-card-subtitle>{{medecin['email']}}</ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
         <ion-text color="primary">
@@ -24,19 +24,24 @@
           <h3>Vous pouvez appelez, envoyer un mail ou réaliser une visio consultation à votre médecin.</h3>
         </ion-text>
         <ion-row>
-          <ion-col size="4">
+          <ion-col size="3">
+            <ion-button size="large" expand="block" fill="outline" shape="round" color="primary">
+              <ion-icon name="add-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col size="3">
             <ion-button size="large" expand="block" fill="outline" shape="round" (click)="presentToast()" color="secondary">
               <ion-icon name="mail-outline"></ion-icon>
             </ion-button>
           </ion-col>
-          <ion-col size="4">
+          <ion-col size="3">
             <ion-button size="large" expand="block" (click)="presentToast()"
               fill="outline" shape="round" color="success">
               <ion-icon name="call-outline"></ion-icon>
             </ion-button>
           </ion-col>
-          <ion-col size="4">
-            <ion-button size="large" [routerLink]="['/zoom-call',medecin.id, data['idUser']]" expand="block"
+          <ion-col size="3">
+            <ion-button size="large" [routerLink]="['/zoom-call',data['idUser']]" expand="block"
               fill="outline" shape="round" color="tertiary">
               <ion-icon name="videocam-outline"></ion-icon>
             </ion-button>

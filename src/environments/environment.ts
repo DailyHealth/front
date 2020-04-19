@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,  
-  server: 'https://backdailyheath.herokuapp.com/'
-
+  server: 'http://localhost:8050/'
 };
 
 /*

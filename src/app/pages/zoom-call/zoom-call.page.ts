@@ -21,6 +21,7 @@ export class ZoomCallPage implements OnInit {
   public url: string = "";
   medecinID: string;
   patientID :string;
+  patients = [];
   data: [];
 
   constructor(public auth: AuthenticationService, private storage: Storage, 
@@ -35,7 +36,7 @@ export class ZoomCallPage implements OnInit {
     });
 
     this.zoomForm = this.formBuilder.group({
-      patientid: [this.patientID],
+      patientid: ['', Validators.required],
       medecinid: [this.medecinID],
       url: ['', Validators.required],
     });
@@ -43,8 +44,9 @@ export class ZoomCallPage implements OnInit {
 
 
   ngOnInit() {
-    this.medecinID = this.route.snapshot.paramMap.get('idp');   
-    this.patientID = this.route.snapshot.paramMap.get('idm'); 
+    this.medecinID = this.route.snapshot.paramMap.get('idUser') ;   
+    //this.patientID = this.route.snapshot.paramMap.get('idp'); 
+    this.getAllPatient();
     this.loadStorage();
     this.getZoomDataByPatientId();
   }
@@ -52,6 +54,20 @@ export class ZoomCallPage implements OnInit {
   submitFormZoom() {
     console.log(this.zoomForm.value);    
     this.service.postUrlZoom(this.zoomForm.value);
+  }
+
+  getAllPatient(){       
+    this.httpClient
+      .get<any[]>(environment.server + "api/GetListUser.php?role=P")
+      .subscribe(
+        (response) => {
+          this.patients = response ;
+          console.log(this.patients);                
+        },
+        (error) => {
+          console.log('Erreur ! : ' + error);
+        }
+      );
   }
 
   getZoomDataByPatientId(){       
