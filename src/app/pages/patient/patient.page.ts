@@ -17,16 +17,19 @@ export class PatientPage implements OnInit {
               private httpClient : HttpClient) { }
 
   ngOnInit() {
-    this.patientID = this.route.snapshot.paramMap.get('id'); 
-    this.getPatientsById(this.patientID);        
+    this.patientID = this.route.snapshot.paramMap.get('id');
+    console.log(this.patientID );
+    this.getPatientsById(this.patientID);  
+         
   }
 
-  getPatientsById(ID : string){
+ getPatientsById(ID : string){
     this.httpClient
-      .get<any[]>(environment.server + "patient/" + ID) // changer la route
+      .get<any[]>(environment.server + "api/getUser.php?iduser=" + this.patientID)
       .subscribe(
         (response) => {
           this.patient = response;  
+          console.log(this.patient);
         },
         (error) => {
           console.log('Erreur ! : ' + error);
