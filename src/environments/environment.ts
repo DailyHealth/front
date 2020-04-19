@@ -3,8 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  server: 'http://localhost:8050/'
+  production: false,  
+  server: 'https://backdailyheath.herokuapp.com/'
+
 };
 
 /*
